@@ -1,0 +1,21 @@
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Node (in case someone runs `npx serve`)
+node_modules/
+
+# Build output (none currently, but safe to preempt)
+dist/
+build/
