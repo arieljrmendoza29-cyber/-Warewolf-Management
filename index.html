@@ -228,6 +228,52 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
 .footer-bottom p{font-size:11px;color:rgba(245,240,232,0.25);letter-spacing:.5px}
 .footer-bottom span{color:var(--gold)}
 
+/* REVIEWS CAROUSEL */
+#reviews{background:var(--black);overflow:hidden}
+.reviews-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:52px;flex-wrap:wrap;gap:20px}
+.reviews-nav{display:flex;gap:10px}
+.rnav-btn{width:46px;height:46px;border:1px solid rgba(201,168,76,0.35);background:transparent;color:var(--gold);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;flex-shrink:0}
+.rnav-btn:hover{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.reviews-track-wrap{overflow:hidden;position:relative}
+.reviews-track{display:flex;gap:20px;transition:transform .5s cubic-bezier(.25,.8,.25,1)}
+.rcard{
+  flex:0 0 calc(33.333% - 14px);
+  background:var(--black2);
+  border:1px solid rgba(201,168,76,0.1);
+  padding:36px 32px;
+  position:relative;
+  transition:border-color .3s;
+}
+.rcard:hover{border-color:rgba(201,168,76,0.35)}
+.rcard-quote-mark{
+  font-family:'Cormorant Garamond',serif;
+  font-size:80px;line-height:.7;color:var(--gold);
+  opacity:.25;position:absolute;top:20px;right:24px;
+  font-style:normal;user-select:none;
+}
+.rcard-stars{display:flex;gap:4px;margin-bottom:18px}
+.rstar{color:var(--gold);font-size:14px}
+.rcard-text{
+  font-size:14px;line-height:1.85;
+  color:rgba(245,240,232,0.7);
+  font-weight:300;margin-bottom:28px;
+  font-style:italic;
+}
+.rcard-person{display:flex;align-items:center;gap:14px}
+.rcard-avatar{
+  width:48px;height:48px;border-radius:50%;
+  object-fit:cover;flex-shrink:0;
+  border:2px solid rgba(201,168,76,0.3);
+}
+.rcard-info{}
+.rcard-name{font-size:14px;font-weight:600;color:var(--white);letter-spacing:.5px;margin-bottom:2px}
+.rcard-role{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.reviews-dots{display:flex;justify-content:center;gap:8px;margin-top:32px}
+.rdot{width:28px;height:2px;background:rgba(201,168,76,0.2);cursor:pointer;transition:all .3s}
+.rdot.active{background:var(--gold)}
+@media(max-width:960px){.rcard{flex:0 0 calc(50% - 10px)}}
+@media(max-width:640px){.rcard{flex:0 0 calc(100% - 0px)}}
+
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -349,92 +395,6 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
 .vmodal-close{position:absolute;top:-48px;right:0;width:38px;height:38px;border:1px solid var(--border);background:transparent;color:var(--gold);font-size:20px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;line-height:1}
 .vmodal-close:hover{background:var(--gold);color:var(--black);border-color:var(--gold)}
 .vmodal-caption{position:absolute;bottom:-44px;left:0;right:0;text-align:center;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray)}
-
-#reviews{
-  background:var(--black);
-  overflow:hidden;
-}
-
-.reviews-carousel{
-  display:flex;
-  gap:22px;
-  overflow-x:auto;
-  padding:20px 0;
-  scroll-snap-type:x mandatory;
-}
-
-.review-card{
-  flex:0 0 280px;
-  background:var(--black2);
-  border:1px solid var(--border);
-  padding:28px 22px;
-  text-align:center;
-  scroll-snap-align:start;
-  transition:transform .3s, border-color .3s;
-}
-
-.review-card:hover{
-  transform:translateY(-6px);
-  border-color:var(--gold);
-}
-
-.review-card img{
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  object-fit:cover;
-  margin-bottom:16px;
-  border:2px solid var(--gold);
-}
-
-.review-card p{
-  font-size:13px;
-  line-height:1.7;
-  color:rgba(245,240,232,0.6);
-  margin-bottom:14px;
-  font-style:italic;
-}
-
-.review-card h4{
-  font-size:14px;
-  color:var(--white);
-  letter-spacing:1px;
-}
-
-.review-card span{
-  font-size:10px;
-  color:var(--gold);
-  letter-spacing:2px;
-  text-transform:uppercase;
-}
-
-  /* REVIEWS MOBILE OPTIMIZATION */
-.reviews-carousel{
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.reviews-carousel::-webkit-scrollbar{
-  display:none;
-}
-
-/* Tablet */
-@media(max-width:960px){
-  .review-card{
-    flex:0 0 240px;
-  }
-}
-
-/* Mobile */
-@media(max-width:640px){
-  .review-card{
-    flex:0 0 85%;
-  }
-
-  #reviews{
-    padding:60px 18px;
-  }
-}
-
 </style>
 </head>
 <body>
@@ -449,12 +409,14 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
     </div>
   </a>
   <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#listings">Listings</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="#vision">Vision</a></li>
+    <li><a href="#reviews">Reviews</a></li>
     <li><a href="#careers">Careers</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -464,12 +426,14 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
   </div>
 </nav>
 <div class="mob-menu" id="mobMenu">
+  <a href="#home" onclick="closeMenu()">Home</a>
   <a href="#about" onclick="closeMenu()">About</a>
   <a href="#listings" onclick="closeMenu()">Listings</a>
   <a href="#gallery" onclick="closeMenu()">Gallery</a>
   <a href="#services" onclick="closeMenu()">Services</a>
   <a href="#why" onclick="closeMenu()">Why Us</a>
   <a href="#vision" onclick="closeMenu()">Vision</a>
+  <a href="#reviews" onclick="closeMenu()">Reviews</a>
   <a href="#careers" onclick="closeMenu()">Careers</a>
   <a href="#contact" onclick="closeMenu()">Contact</a>
   <a href="#contact" onclick="closeMenu()" class="mob-cta">Get Started →</a>
@@ -674,50 +638,6 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
     <div class="scard reveal"><div class="scard-num">06</div><div class="scard-name">COMPLIANCE & LEGAL</div><p class="scard-desc">Ensuring full compliance with Chicago housing codes, landlord-tenant laws, fair housing regulations, and all applicable local and state ordinances.</p></div>
   </div>
 </section>
-<!-- REVIEWS -->
-<section id="reviews">
-  <div class="tag">Client Feedback</div>
-  <h2 class="sec-title">CLIENT <span class="gold">REVIEWS</span></h2>
-
-  <div class="reviews-carousel">
-    
-    <div class="review-card">
-      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
-      <p>"WareWolf Management completely transformed my rental property. Professional, fast, and reliable."</p>
-      <h4>James Carter</h4>
-      <span>Property Owner</span>
-    </div>
-
-    <div class="review-card">
-      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
-      <p>"Their team handles everything seamlessly. I finally have peace of mind as an investor."</p>
-      <h4>Sophia Martinez</h4>
-      <span>Real Estate Investor</span>
-    </div>
-
-    <div class="review-card">
-      <img src="https://randomuser.me/api/portraits/men/51.jpg" alt="">
-      <p>"Leasing was quick and smooth. Tenants were placed faster than expected."</p>
-      <h4>Daniel Brooks</h4>
-      <span>Landlord</span>
-    </div>
-
-    <div class="review-card">
-      <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="">
-      <p>"Top-tier service. Their attention to detail sets them apart from other firms."</p>
-      <h4>Olivia Bennett</h4>
-      <span>Property Owner</span>
-    </div>
-
-    <div class="review-card">
-      <img src="https://randomuser.me/api/portraits/men/77.jpg" alt="">
-      <p>"Highly recommend WareWolf. Strong communication and excellent results."</p>
-      <h4>Marcus Reed</h4>
-      <span>Investor</span>
-    </div>
-
-  </div>
-</section>
 
 <!-- WHY US -->
 <section id="why">
@@ -847,6 +767,166 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
   </div>
 </section>
 
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-header">
+    <div>
+      <div class="tag">Client Stories</div>
+      <h2 class="sec-title">WHAT OUR <span class="gold">CLIENTS SAY</span></h2>
+    </div>
+    <div class="reviews-nav">
+      <button class="rnav-btn" id="rPrev" aria-label="Previous">&#8592;</button>
+      <button class="rnav-btn" id="rNext" aria-label="Next">&#8594;</button>
+    </div>
+  </div>
+  <div class="reviews-track-wrap">
+    <div class="reviews-track" id="reviewsTrack">
+
+      <!-- CARD 1 -->
+      <div class="rcard reveal">
+        <div class="rcard-quote-mark">"</div>
+        <div class="rcard-stars"><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span></div>
+        <p class="rcard-text">"WareWolf Management completely transformed how I handle my investment properties. Their attention to detail and proactive communication is unmatched. I haven't had to worry about a single vacancy in months."</p>
+        <div class="rcard-person">
+          <img class="rcard-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Marcus T." onerror="this.src='https://ui-avatars.com/api/?name=Marcus+T&background=C9A84C&color=080808&size=100'"/>
+          <div class="rcard-info">
+            <div class="rcard-name">Marcus T.</div>
+            <div class="rcard-role">Property Investor — Lincoln Park</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="rcard reveal">
+        <div class="rcard-quote-mark">"</div>
+        <div class="rcard-stars"><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span></div>
+        <p class="rcard-text">"From day one, the WareWolf team was professional, responsive, and incredibly knowledgeable about Chicago's rental market. They found quality tenants within two weeks of listing. Highly recommend."</p>
+        <div class="rcard-person">
+          <img class="rcard-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" alt="Jasmine R." onerror="this.src='https://ui-avatars.com/api/?name=Jasmine+R&background=C9A84C&color=080808&size=100'"/>
+          <div class="rcard-info">
+            <div class="rcard-name">Jasmine R.</div>
+            <div class="rcard-role">Landlord — Wicker Park</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="rcard reveal">
+        <div class="rcard-quote-mark">"</div>
+        <div class="rcard-stars"><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span></div>
+        <p class="rcard-text">"The financial reporting alone is worth it. Every month I get a crystal-clear breakdown of income and expenses. No other management company I've worked with comes close to this level of transparency."</p>
+        <div class="rcard-person">
+          <img class="rcard-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="David K." onerror="this.src='https://ui-avatars.com/api/?name=David+K&background=C9A84C&color=080808&size=100'"/>
+          <div class="rcard-info">
+            <div class="rcard-name">David K.</div>
+            <div class="rcard-role">Portfolio Owner — Gold Coast</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="rcard reveal">
+        <div class="rcard-quote-mark">"</div>
+        <div class="rcard-stars"><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span></div>
+        <p class="rcard-text">"Switching to WareWolf was the best decision I made for my rental properties. They handled a difficult tenant situation with professionalism and got everything resolved within days. True peace of mind."</p>
+        <div class="rcard-person">
+          <img class="rcard-avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face" alt="Priya S." onerror="this.src='https://ui-avatars.com/api/?name=Priya+S&background=C9A84C&color=080808&size=100'"/>
+          <div class="rcard-info">
+            <div class="rcard-name">Priya S.</div>
+            <div class="rcard-role">Residential Owner — Logan Square</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 5 -->
+      <div class="rcard reveal">
+        <div class="rcard-quote-mark">"</div>
+        <div class="rcard-stars"><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span></div>
+        <p class="rcard-text">"As a first-time landlord, I was overwhelmed. WareWolf walked me through everything — leasing, maintenance, compliance — and made it effortless. I actually enjoy being a property owner now."</p>
+        <div class="rcard-person">
+          <img class="rcard-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face" alt="Ryan M." onerror="this.src='https://ui-avatars.com/api/?name=Ryan+M&background=C9A84C&color=080808&size=100'"/>
+          <div class="rcard-info">
+            <div class="rcard-name">Ryan M.</div>
+            <div class="rcard-role">First-Time Landlord — Bucktown</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 6 -->
+      <div class="rcard reveal">
+        <div class="rcard-quote-mark">"</div>
+        <div class="rcard-stars"><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span></div>
+        <p class="rcard-text">"WareWolf's maintenance team is incredibly fast. A plumbing issue was reported by my tenant on a Sunday evening and it was resolved by Monday morning. That kind of service keeps great tenants in place."</p>
+        <div class="rcard-person">
+          <img class="rcard-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face" alt="Aisha N." onerror="this.src='https://ui-avatars.com/api/?name=Aisha+N&background=C9A84C&color=080808&size=100'"/>
+          <div class="rcard-info">
+            <div class="rcard-name">Aisha N.</div>
+            <div class="rcard-role">Multi-unit Owner — Hyde Park</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 7 -->
+      <div class="rcard reveal">
+        <div class="rcard-quote-mark">"</div>
+        <div class="rcard-stars"><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span></div>
+        <p class="rcard-text">"Their investment consulting helped me identify a property in Pilsen that yielded a 22% ROI in the first year. WareWolf doesn't just manage — they think like your business partner, not just a vendor."</p>
+        <div class="rcard-person">
+          <img class="rcard-avatar" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=face" alt="James L." onerror="this.src='https://ui-avatars.com/api/?name=James+L&background=C9A84C&color=080808&size=100'"/>
+          <div class="rcard-info">
+            <div class="rcard-name">James L.</div>
+            <div class="rcard-role">Real Estate Investor — Pilsen</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 8 -->
+      <div class="rcard reveal">
+        <div class="rcard-quote-mark">"</div>
+        <div class="rcard-stars"><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span></div>
+        <p class="rcard-text">"The leasing process was handled completely by WareWolf — photos, marketing, showings, and signing. I was hands-off the entire time and ended up with exceptional long-term tenants. Incredible service."</p>
+        <div class="rcard-person">
+          <img class="rcard-avatar" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&h=100&fit=crop&crop=face" alt="Sophia C." onerror="this.src='https://ui-avatars.com/api/?name=Sophia+C&background=C9A84C&color=080808&size=100'"/>
+          <div class="rcard-info">
+            <div class="rcard-name">Sophia C.</div>
+            <div class="rcard-role">Condo Owner — River North</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 9 -->
+      <div class="rcard reveal">
+        <div class="rcard-quote-mark">"</div>
+        <div class="rcard-stars"><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span></div>
+        <p class="rcard-text">"WareWolf's compliance expertise saved me from a potentially costly violation. They flagged an issue with my rental license before it became a problem. Having that legal knowledge on your side is invaluable."</p>
+        <div class="rcard-person">
+          <img class="rcard-avatar" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop&crop=face" alt="Trevor B." onerror="this.src='https://ui-avatars.com/api/?name=Trevor+B&background=C9A84C&color=080808&size=100'"/>
+          <div class="rcard-info">
+            <div class="rcard-name">Trevor B.</div>
+            <div class="rcard-role">Commercial Landlord — The Loop</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 10 -->
+      <div class="rcard reveal">
+        <div class="rcard-quote-mark">"</div>
+        <div class="rcard-stars"><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span><span class="rstar">★</span></div>
+        <p class="rcard-text">"I manage properties remotely from another state. WareWolf makes it completely seamless — their owner portal gives me real-time visibility into everything. I feel more in control than when I managed locally."</p>
+        <div class="rcard-person">
+          <img class="rcard-avatar" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&h=100&fit=crop&crop=face" alt="Layla H." onerror="this.src='https://ui-avatars.com/api/?name=Layla+H&background=C9A84C&color=080808&size=100'"/>
+          <div class="rcard-info">
+            <div class="rcard-name">Layla H.</div>
+            <div class="rcard-role">Remote Investor — Evanston</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end track -->
+  </div>
+  <div class="reviews-dots" id="reviewsDots"></div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
@@ -942,7 +1022,84 @@ if('IntersectionObserver' in window && galleryVideos.length){
   galleryVideos.forEach(v=>vObs.observe(v));
 }
 
-/* Respect user's reduced-motion preference — pause all autoplaying video */
+/* REVIEWS CAROUSEL */
+(function(){
+  const track = document.getElementById('reviewsTrack');
+  const dotsWrap = document.getElementById('reviewsDots');
+  const prevBtn = document.getElementById('rPrev');
+  const nextBtn = document.getElementById('rNext');
+  if(!track) return;
+
+  const cards = Array.from(track.children);
+  const total = cards.length;
+  let current = 0;
+  let perView = 3;
+
+  function getPerView(){
+    return window.innerWidth < 641 ? 1 : window.innerWidth < 961 ? 2 : 3;
+  }
+
+  function maxIndex(){
+    return Math.max(0, total - perView);
+  }
+
+  function buildDots(){
+    dotsWrap.innerHTML = '';
+    const count = maxIndex() + 1;
+    for(let i = 0; i < count; i++){
+      const d = document.createElement('div');
+      d.className = 'rdot' + (i === current ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(d);
+    }
+  }
+
+  function updateDots(){
+    Array.from(dotsWrap.children).forEach((d,i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function goTo(idx){
+    current = Math.max(0, Math.min(idx, maxIndex()));
+    const cardW = cards[0].offsetWidth + 20; // width + gap
+    track.style.transform = `translateX(-${current * cardW}px)`;
+    updateDots();
+  }
+
+  function init(){
+    perView = getPerView();
+    current = Math.min(current, maxIndex());
+    buildDots();
+    goTo(current);
+  }
+
+  prevBtn && prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn && nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // Auto-play every 5s
+  let autoTimer = setInterval(() => {
+    goTo(current >= maxIndex() ? 0 : current + 1);
+  }, 5000);
+
+  // Pause on hover
+  track.addEventListener('mouseenter', () => clearInterval(autoTimer));
+  track.addEventListener('mouseleave', () => {
+    autoTimer = setInterval(() => goTo(current >= maxIndex() ? 0 : current + 1), 5000);
+  });
+
+  // Touch swipe
+  let touchStartX = 0;
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if(Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+  });
+
+  window.addEventListener('resize', init);
+  init();
+})();
+
 if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
   document.querySelectorAll('video[autoplay]').forEach(v=>{
     v.removeAttribute('autoplay');
