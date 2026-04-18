@@ -91,7 +91,12 @@ nav{
 .hero-vline{position:absolute;right:190px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,rgba(215,144,5,0.25),transparent)}
 
 /* SECTION BASE */
-section{padding:110px 60px}
+/* SECTION BASE */
+section{padding:110px 60px;position:relative;overflow:hidden}
+/* Gold grid overlay on every section — matches hero look, preserves solid section backgrounds */
+section:not(#home)::after,#team::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(215,144,5,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(215,144,5,0.045) 1px,transparent 1px);background-size:72px 72px}
+section > *,#team > *{position:relative;z-index:1}
+#team{position:relative;overflow:hidden}
 .tag{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:10px}
 .tag::before{content:'';width:28px;height:1px;background:var(--gold)}
 .sec-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(44px,5.5vw,76px);letter-spacing:3px;line-height:.92;text-transform:uppercase;color:var(--white);margin-bottom:20px}
