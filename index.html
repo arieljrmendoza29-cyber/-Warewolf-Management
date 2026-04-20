@@ -120,23 +120,6 @@ section > *,#team > *{position:relative;z-index:1}
 .ab-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
 .ab-val{font-size:12px;color:var(--white);font-weight:600}
 
-/* LISTINGS */
-#listings{background:var(--black)}
-.listings-intro{max-width:600px;margin-bottom:56px}
-.listings-intro p{font-size:15px;line-height:1.9;color:rgba(245,240,232,0.55);font-weight:300}
-.listings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-.lcard{position:relative;overflow:hidden;cursor:pointer;background:var(--black2)}
-.lcard:first-child{grid-column:span 2}
-.lcard-img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover;transition:transform .6s ease;filter:brightness(.8)}
-.lcard:first-child .lcard-img{aspect-ratio:16/9}
-.lcard:hover .lcard-img{transform:scale(1.05);filter:brightness(.6)}
-.lcard-info{position:absolute;bottom:0;left:0;right:0;padding:24px;background:linear-gradient(to top,rgba(8,8,8,0.96) 0%,transparent 100%);transform:translateY(4px);transition:transform .3s}
-.lcard:hover .lcard-info{transform:translateY(0)}
-.lcard-badge{display:inline-block;background:var(--gold);color:var(--black);font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;font-weight:800;margin-bottom:8px}
-.lcard-addr{font-family:'Barlow Condensed',sans-serif;font-size:18px;letter-spacing:1px;color:var(--white);margin-bottom:4px}
-.lcard-meta{display:flex;gap:14px;font-size:11px;color:rgba(245,240,232,0.5);letter-spacing:1px}
-.listings-cta{margin-top:40px;text-align:center}
-
 /* NEIGHBORHOODS */
 #neighborhoods{background:var(--black2);padding:110px 60px}
 .nbhd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:56px}
@@ -150,16 +133,21 @@ section > *,#team > *{position:relative;z-index:1}
 /* SERVICES */
 #services{background:var(--black)}
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px}
-.scard{background:var(--black2);padding:44px 34px;border-bottom:2px solid transparent;transition:all .35s;position:relative;overflow:hidden}
-.scard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .35s;transform-origin:left}
-.scard:hover{background:var(--black3);transform:translateY(-4px)}
+.scard{background:var(--black2);padding:44px 34px;border-bottom:2px solid transparent;transition:all .35s;position:relative;overflow:hidden;background-size:cover;background-position:center}
+.scard::before{content:'';position:absolute;inset:0;background:linear-gradient(170deg,rgba(8,8,8,0.78) 0%,rgba(8,8,8,0.92) 100%);transition:background .35s;z-index:1}
+.scard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .35s;transform-origin:left;z-index:3}
+.scard > *{position:relative;z-index:2}
+.scard:hover{transform:translateY(-4px)}
+.scard:hover::before{background:linear-gradient(170deg,rgba(8,8,8,0.6) 0%,rgba(8,8,8,0.85) 100%)}
 .scard:hover::after{transform:scaleX(1)}
-.scard-num{font-family:'Barlow Condensed',sans-serif;font-size:52px;color:rgba(215,144,5,0.1);letter-spacing:2px;margin-bottom:16px;line-height:1}
+.scard-num{font-family:'Barlow Condensed',sans-serif;font-size:52px;color:rgba(215,144,5,0.55);letter-spacing:2px;margin-bottom:16px;line-height:1}
 .scard-name{font-family:'Barlow Condensed',sans-serif;font-size:24px;letter-spacing:2px;color:var(--white);margin-bottom:14px}
-.scard-desc{font-size:13px;line-height:1.85;color:rgba(245,240,232,0.5);font-weight:300}
+.scard-desc{font-size:13px;line-height:1.85;color:rgba(245,240,232,0.75);font-weight:300}
 
 /* WHY US */
-#why{background:var(--black2)}
+#why{position:relative;background:var(--black2) url('https://images.unsplash.com/photo-1581351721010-8cf859cb14a4?w=1800&q=80') center/cover no-repeat fixed}
+#why > *{position:relative;z-index:2}
+#why::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,8,0.94) 0%,rgba(8,8,8,0.88) 50%,rgba(8,8,8,0.96) 100%);z-index:1}
 .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;margin-top:56px;align-items:start}
 .why-list{display:flex;flex-direction:column}
 .witem{padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;gap:22px;transition:padding-left .3s;cursor:default}
@@ -176,11 +164,15 @@ section > *,#team > *{position:relative;z-index:1}
 
 /* VISION */
 #vision{background:var(--black);position:relative;overflow:hidden}
-#vision::before{content:'WAREWOLF';position:absolute;right:-80px;top:50%;transform:translateY(-50%);font-family:'Barlow Condensed',sans-serif;font-size:180px;letter-spacing:12px;color:rgba(215,144,5,0.025);pointer-events:none;white-space:nowrap}
-.vm-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:56px}
-.vmcard{padding:60px}
-.vmcard:first-child{background:var(--black2)}
-.vmcard:last-child{background:var(--black3)}
+#vision::before{content:'WAREWOLF';position:absolute;right:-80px;top:50%;transform:translateY(-50%);font-family:'Barlow Condensed',sans-serif;font-size:180px;letter-spacing:12px;color:rgba(215,144,5,0.025);pointer-events:none;white-space:nowrap;z-index:0}
+.vm-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:56px;position:relative;z-index:2}
+.vmcard{padding:60px;position:relative;overflow:hidden;background-size:cover;background-position:center}
+.vmcard::before{content:'';position:absolute;inset:0;z-index:1}
+.vmcard > *{position:relative;z-index:2}
+.vmcard:first-child{background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80')}
+.vmcard:first-child::before{background:linear-gradient(135deg,rgba(8,8,8,0.86) 0%,rgba(15,15,15,0.94) 100%)}
+.vmcard:last-child{background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80')}
+.vmcard:last-child::before{background:linear-gradient(135deg,rgba(15,15,15,0.94) 0%,rgba(22,22,22,0.9) 100%)}
 .vmcard-tag{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:10px}
 .vmcard-tag::before{content:'';width:22px;height:1px;background:var(--gold)}
 .vmcard h3{font-family:'Barlow Condensed',sans-serif;font-size:48px;letter-spacing:3px;color:var(--white);margin-bottom:20px;line-height:.9}
@@ -337,9 +329,7 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
   .about-left{padding-right:0}
   .about-right{min-height:320px}
   .about-badge{min-width:200px;padding:18px 20px}
-  .listings-grid,.services-grid{grid-template-columns:1fr}
-  .lcard:first-child{grid-column:span 1}
-  .lcard:first-child .lcard-img{aspect-ratio:4/3}
+  .services-grid{grid-template-columns:1fr}
   .nbhd-grid{grid-template-columns:1fr 1fr}
   .footer-top{grid-template-columns:1fr 1fr;gap:36px}
   .crow{grid-template-columns:1fr}
@@ -366,7 +356,7 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
   .nbhd-grid{grid-template-columns:1fr;gap:2px}
   .footer-top{grid-template-columns:1fr;gap:28px;margin-bottom:32px}
   .fbrand p{max-width:none}
-  .services-grid,.listings-grid{gap:1px}
+  .services-grid{gap:1px}
   .scard{padding:32px 22px}
   .marquee{padding:16px 0}
   .about-badge{position:static;margin-top:-80px;margin-left:18px;margin-right:18px;min-width:0;width:auto}
@@ -443,7 +433,6 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#listings">Listings</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#why">Why Us</a></li>
@@ -460,7 +449,6 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
 <div class="mob-menu" id="mobMenu">
   <a href="#home" onclick="closeMenu()">Home</a>
   <a href="#about" onclick="closeMenu()">About</a>
-  <a href="#listings" onclick="closeMenu()">Listings</a>
   <a href="#gallery" onclick="closeMenu()">Gallery</a>
   <a href="#services" onclick="closeMenu()">Services</a>
   <a href="#why" onclick="closeMenu()">Why Us</a>
@@ -557,42 +545,6 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
   </div>
 </section>
 
-<!-- LISTINGS -->
-<section id="listings">
-  <div class="tag">Chicago Properties</div>
-  <h2 class="sec-title">FEATURED <span class="gold">LISTINGS</span></h2>
-  <div class="listings-intro reveal">
-    <p>Explore our curated selection of premium Chicago properties — from Lincoln Park to Logan Square.</p>
-  </div>
-  <div class="listings-grid">
-    <div class="lcard reveal">
-      <img class="lcard-img" src="https://dreamtownphotos.com/photos/property/529/12620529.jpg" alt="2214 W Oakdale" onerror="this.src='https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80'"/>
-      <div class="lcard-info"><span class="lcard-badge">Featured</span><div class="lcard-addr">2214 W Oakdale Avenue</div><div class="lcard-meta"><span>6 beds</span><span>4.1 baths</span><span>North Center</span></div></div>
-    </div>
-    <div class="lcard reveal">
-      <img class="lcard-img" src="https://dreamtownphotos.com/photos/property/777/12610777.jpg" alt="1303 W Schubert" onerror="this.src='https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80'"/>
-      <div class="lcard-info"><span class="lcard-badge">New</span><div class="lcard-addr">1303 W Schubert Avenue</div><div class="lcard-meta"><span>5 beds</span><span>3.1 baths</span><span>Lincoln Park</span></div></div>
-    </div>
-    <div class="lcard reveal">
-      <img class="lcard-img" src="https://dreamtownphotos.com/photos/property/492/12579492.jpg" alt="809 Lenox Road" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'"/>
-      <div class="lcard-info"><span class="lcard-badge">Active</span><div class="lcard-addr">809 Lenox Road</div><div class="lcard-meta"><span>5 beds</span><span>4.1 baths</span><span>Glenview</span></div></div>
-    </div>
-    <div class="lcard reveal">
-      <img class="lcard-img" src="https://dreamtownphotos.com/photos/property/294/12608294.jpg" alt="360 E Randolph" onerror="this.src='https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&q=80'"/>
-      <div class="lcard-info"><span class="lcard-badge">New</span><div class="lcard-addr">360 E Randolph St #4203</div><div class="lcard-meta"><span>3 beds</span><span>2.1 baths</span><span>New East Side</span></div></div>
-    </div>
-    <div class="lcard reveal">
-      <img class="lcard-img" src="https://dreamtownphotos.com/photos/property/808/12512808.jpg" alt="4132 N Claremont" onerror="this.src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80'"/>
-      <div class="lcard-info"><span class="lcard-badge">Active</span><div class="lcard-addr">4132 N Claremont Avenue</div><div class="lcard-meta"><span>6 beds</span><span>5.1 baths</span><span>North Center</span></div></div>
-    </div>
-    <div class="lcard reveal">
-      <img class="lcard-img" src="https://dreamtownphotos.com/photos/property/864/12590864.jpg" alt="2733 N Pulaski" onerror="this.src='https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80'"/>
-      <div class="lcard-info"><span class="lcard-badge">New</span><div class="lcard-addr">2733 N Pulaski Road</div><div class="lcard-meta"><span>4 beds</span><span>3.1 baths</span><span>Logan Square</span></div></div>
-    </div>
-  </div>
-  <div class="listings-cta reveal"><a href="#contact" class="btn-ghost" style="margin-top:40px">View All Listings →</a></div>
-</section>
-
 <!-- IN MOTION / GALLERY -->
 <section id="gallery">
   <div class="tag">Cinematic Real Estate</div>
@@ -674,12 +626,12 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
   <div class="tag">What We Do</div>
   <h2 class="sec-title">OUR <span class="gold">SERVICES</span></h2>
   <div class="services-grid">
-    <div class="scard reveal"><div class="scard-num">01</div><div class="scard-name">PROPERTY MANAGEMENT</div><p class="scard-desc">Full-service management of residential and commercial properties including tenant screening, lease administration, rent collection, and 24/7 maintenance coordination.</p></div>
-    <div class="scard reveal"><div class="scard-num">02</div><div class="scard-name">INVESTMENT CONSULTING</div><p class="scard-desc">Strategic guidance for real estate investors looking to acquire, develop, or optimize their Chicago-area portfolio with data-driven market analysis and ROI projections.</p></div>
-    <div class="scard reveal"><div class="scard-num">03</div><div class="scard-name">LEASING SERVICES</div><p class="scard-desc">Professional tenant placement including marketing, property showings, thorough background checks, and lease execution to minimize vacancy periods.</p></div>
-    <div class="scard reveal"><div class="scard-num">04</div><div class="scard-name">MAINTENANCE & RENOVATION</div><p class="scard-desc">Coordinated maintenance programs, preventive inspections, and renovation project management to preserve and enhance your property's value.</p></div>
-    <div class="scard reveal"><div class="scard-num">05</div><div class="scard-name">FINANCIAL REPORTING</div><p class="scard-desc">Transparent monthly financial statements, owner portals, annual reporting, and budget management to keep you fully informed about your investment performance.</p></div>
-    <div class="scard reveal"><div class="scard-num">06</div><div class="scard-name">COMPLIANCE & LEGAL</div><p class="scard-desc">Ensuring full compliance with Chicago housing codes, landlord-tenant laws, fair housing regulations, and all applicable local and state ordinances.</p></div>
+    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80')"><div class="scard-num">01</div><div class="scard-name">PROPERTY MANAGEMENT</div><p class="scard-desc">Full-service management of residential and commercial properties including tenant screening, lease administration, rent collection, and 24/7 maintenance coordination.</p></div>
+    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&q=80')"><div class="scard-num">02</div><div class="scard-name">INVESTMENT CONSULTING</div><p class="scard-desc">Strategic guidance for real estate investors looking to acquire, develop, or optimize their Chicago-area portfolio with data-driven market analysis and ROI projections.</p></div>
+    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80')"><div class="scard-num">03</div><div class="scard-name">LEASING SERVICES</div><p class="scard-desc">Professional tenant placement including marketing, property showings, thorough background checks, and lease execution to minimize vacancy periods.</p></div>
+    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80')"><div class="scard-num">04</div><div class="scard-name">MAINTENANCE &amp; RENOVATION</div><p class="scard-desc">Coordinated maintenance programs, preventive inspections, and renovation project management to preserve and enhance your property's value.</p></div>
+    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80')"><div class="scard-num">05</div><div class="scard-name">FINANCIAL REPORTING</div><p class="scard-desc">Transparent monthly financial statements, owner portals, annual reporting, and budget management to keep you fully informed about your investment performance.</p></div>
+    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80')"><div class="scard-num">06</div><div class="scard-name">COMPLIANCE &amp; LEGAL</div><p class="scard-desc">Ensuring full compliance with Chicago housing codes, landlord-tenant laws, fair housing regulations, and all applicable local and state ordinances.</p></div>
   </div>
 </section>
 
