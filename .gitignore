@@ -1,0 +1,21 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Local dev
+node_modules/
+.env
+.env.local
+
+# Build artifacts (not used here, but just in case)
+dist/
+build/
+
+# Logs
+*.log
