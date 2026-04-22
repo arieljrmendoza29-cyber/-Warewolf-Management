@@ -120,15 +120,19 @@ section > *,#team > *{position:relative;z-index:1}
 .ab-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
 .ab-val{font-size:12px;color:var(--white);font-weight:600}
 
-/* NEIGHBORHOODS */
-#neighborhoods{background:var(--black2);padding:110px 60px}
-.nbhd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:56px}
-.ncard{position:relative;overflow:hidden;cursor:pointer}
-.ncard-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .6s;filter:brightness(.65)}
-.ncard:hover .ncard-img{transform:scale(1.07);filter:brightness(.45)}
-.ncard-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,0.88) 30%,transparent 70%);display:flex;align-items:flex-end;padding:24px}
-.ncard-tag{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
-.ncard-name{font-family:'Barlow Condensed',sans-serif;font-size:26px;letter-spacing:2px;color:var(--white)}
+/* TESTIMONIALS WITH PHOTOS */
+#testimonials{background:var(--black2);padding:110px 60px;position:relative;overflow:hidden}
+.tgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin-top:56px}
+.tcard{background:var(--black3);display:flex;flex-direction:column;overflow:hidden;transition:transform .35s, box-shadow .35s;position:relative}
+.tcard:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,0,0,0.5)}
+.tphoto{width:100%;aspect-ratio:4/5;background-size:cover;background-position:center;filter:grayscale(20%) brightness(.85);transition:filter .5s, transform .5s}
+.tcard:hover .tphoto{filter:grayscale(0%) brightness(1);transform:scale(1.04)}
+.tbody{padding:24px 22px 26px;display:flex;flex-direction:column;gap:12px;border-top:1px solid rgba(215,144,5,0.15)}
+.tstars{color:var(--gold);letter-spacing:3px;font-size:13px}
+.tquote{font-size:13px;line-height:1.65;color:rgba(245,240,232,0.78);font-style:italic;font-weight:300;flex-grow:1}
+.tmeta{display:flex;flex-direction:column;gap:3px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)}
+.tmeta strong{font-size:13px;color:var(--white);letter-spacing:.5px}
+.tmeta span{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
 
 /* SERVICES */
 #services{background:var(--black)}
@@ -237,7 +241,16 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
 .footer-bottom span{color:var(--gold)}
 
 /* REVIEWS CAROUSEL */
-#reviews{background:var(--black);overflow:hidden}
+#reviews{
+  position:relative;
+  background:var(--black) url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1920&q=80') center/cover no-repeat fixed;
+  overflow:hidden;
+  isolation:isolate;
+}
+#reviews::before{
+  content:'';position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(8,8,8,0.92) 0%,rgba(8,8,8,0.88) 40%,rgba(8,8,8,0.96) 100%);
+}
 .reviews-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:52px;flex-wrap:wrap;gap:20px}
 .reviews-nav{display:flex;gap:10px}
 .rnav-btn{width:46px;height:46px;border:1px solid rgba(215,144,5,0.35);background:transparent;color:var(--gold);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;flex-shrink:0}
@@ -283,24 +296,16 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
 @media(max-width:640px){.rcard{flex:0 0 calc(100% - 0px)}}
 
 
-/* SOCIAL CAROUSEL */
-.soc-card{
-  flex:0 0 200px;
-  background:var(--black3);
-  border:1px solid rgba(215,144,5,0.15);
-  padding:32px 20px 24px;
-  display:flex;flex-direction:column;align-items:center;
-  text-align:center;cursor:pointer;
-  transition:all .3s;position:relative;overflow:hidden;
-}
-.soc-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .35s;transform-origin:left}
-.soc-card:hover{transform:translateY(-6px);border-color:rgba(215,144,5,0.4);background:var(--black4)}
-.soc-card:hover::after{transform:scaleX(1)}
-.soc-icon-wrap{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px;box-shadow:0 4px 20px rgba(0,0,0,0.4)}
-.soc-name{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white);margin-bottom:4px}
-.soc-handle{font-size:11px;color:var(--gray);letter-spacing:1px;margin-bottom:14px}
-.soc-follow{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;border:1px solid rgba(215,144,5,0.35);padding:5px 14px;transition:all .25s}
-.soc-card:hover .soc-follow{background:var(--gold);color:var(--black)}
+/* LOCATION / MAP */
+#location{position:relative}
+.map-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:2px;margin-top:8px;min-height:520px}
+.map-info{background:var(--black3);padding:42px 38px;display:flex;flex-direction:column;gap:28px;border-top:3px solid var(--gold)}
+.map-info-block{display:flex;flex-direction:column;gap:6px}
+.map-lbl{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:600}
+.map-val{font-size:15px;line-height:1.55;color:rgba(245,240,232,0.85);font-weight:300}
+.map-frame{background:var(--black3);overflow:hidden;min-height:480px}
+.map-frame iframe{width:100%;height:100%;min-height:480px;display:block;filter:grayscale(25%) contrast(1.05);transition:filter .5s}
+.map-frame:hover iframe{filter:grayscale(0%) contrast(1)}
 
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
@@ -318,19 +323,23 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
   .hamburger{display:flex}
   .mob-menu{top:80px}
   section{padding:72px 22px}
-  #neighborhoods{padding:72px 22px}
+  #testimonials{padding:72px 22px}
+  .tgrid{grid-template-columns:1fr 1fr;gap:2px}
   #team{grid-template-columns:1fr}
   .hero-inner{padding:96px 22px 60px}
   .hero-h1{font-size:clamp(54px,11vw,88px);letter-spacing:1.5px}
   .hero-stats,.hero-vline{display:none}
   .hero-p{font-size:17px}
   .sec-title{font-size:clamp(38px,7vw,62px);letter-spacing:2px}
-  .about-grid,.why-grid,.vm-grid,.contact-grid{grid-template-columns:1fr;gap:36px}
+  .about-grid,.why-grid,.vm-grid,.contact-grid,.map-grid{grid-template-columns:1fr;gap:36px}
   .about-left{padding-right:0}
   .about-right{min-height:320px}
   .about-badge{min-width:200px;padding:18px 20px}
   .services-grid{grid-template-columns:1fr}
-  .nbhd-grid{grid-template-columns:1fr 1fr}
+  .tgrid{grid-template-columns:1fr 1fr}
+  #location{padding:60px 22px}
+  .map-info{padding:32px 26px;gap:22px}
+  .map-frame iframe,.map-frame{min-height:360px}
   .footer-top{grid-template-columns:1fr 1fr;gap:36px}
   .crow{grid-template-columns:1fr}
   footer{padding:40px 22px 28px}
@@ -344,7 +353,8 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
   .nav-logo-text{display:none}
   .mob-menu{top:60px;padding:12px 18px}
   section{padding:60px 18px}
-  #neighborhoods{padding:60px 18px}
+  #testimonials{padding:60px 18px}
+  .tgrid{grid-template-columns:1fr}
   .hero-inner{padding:86px 18px 48px}
   .hero-h1{font-size:clamp(44px,12vw,68px);line-height:.92}
   .hero-p{font-size:16px;margin:22px 0 34px}
@@ -353,7 +363,6 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
   .hero-eyebrow{font-size:9px;letter-spacing:3px;padding:6px 12px}
   .sec-title{font-size:clamp(32px,9vw,50px);letter-spacing:1.5px}
   .tag{font-size:9px;letter-spacing:4px}
-  .nbhd-grid{grid-template-columns:1fr;gap:2px}
   .footer-top{grid-template-columns:1fr;gap:28px;margin-bottom:32px}
   .fbrand p{max-width:none}
   .services-grid{gap:1px}
@@ -433,7 +442,6 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="#vision">Vision</a></li>
@@ -449,7 +457,6 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
 <div class="mob-menu" id="mobMenu">
   <a href="#home" onclick="closeMenu()">Home</a>
   <a href="#about" onclick="closeMenu()">About</a>
-  <a href="#gallery" onclick="closeMenu()">Gallery</a>
   <a href="#services" onclick="closeMenu()">Services</a>
   <a href="#why" onclick="closeMenu()">Why Us</a>
   <a href="#vision" onclick="closeMenu()">Vision</a>
@@ -524,19 +531,15 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
         mix-blend-mode:luminosity;
       "/>
       <p>
-  <strong>Warewolf Management</strong> is a results-driven real estate management and consulting firm dedicated to connecting opportunity with execution. 
-  We specialize in supporting property acquisitions, coordinating transactions, and guiding clients through every stage of the deal.
+  <strong>WareWolf Management</strong> is a full-cycle real estate services firm built around one principle: every stage of a property's journey deserves a specialist who owns the outcome. From generating qualified leads to marketing premium listings, advising on acquisitions, matching investors with opportunity, managing stabilized assets, and producing the media that makes it all move — we handle it under one roof.
 </p>
 
 <p>
-  We work closely with investors, buyers, sellers, and real estate professionals to ensure seamless communication, strategic decision-making, 
-  and efficient deal flow. Our approach is built on <strong>precision, trust, and market insight</strong>—allowing our clients to move confidently 
-  in a competitive landscape.
+  We work with residential buyers and sellers, commercial investors, real estate agents, and brokerage partners across Chicago, combining <strong>strategic insight, transactional precision, and production-grade media</strong> to turn complex deals into clean outcomes.
 </p>
 
 <p>
-  At Warewolf Management, we don’t just manage transactions—we create pathways for growth, helping our clients unlock value and maximize 
-  long-term success in real estate.
+  At WareWolf Management, we don't just close transactions — we build <strong>long-term relationships</strong> that span multiple deals, multiple properties, and multiple years, helping our clients unlock value at every stage of their real estate story.
 </p>
 
       <div class="gold-line"></div>
@@ -550,85 +553,57 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
           <div class="ab-row"><span class="ab-lbl">Founded</span><span class="ab-val">April 14, 2026</span></div>
           <div class="ab-row"><span class="ab-lbl">Address</span><span class="ab-val">203 N LaSalle St</span></div>
           <div class="ab-row"><span class="ab-lbl">City</span><span class="ab-val">Chicago, IL 60601</span></div>
-          <div class="ab-row"><span class="ab-lbl">Industry</span><span class="ab-val">Real Estate Mgmt</span></div>
+          <div class="ab-row"><span class="ab-lbl">Industry</span><span class="ab-val">Real Estate Services</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- IN MOTION / GALLERY -->
-<section id="gallery">
-  <div class="tag">Cinematic Real Estate</div>
-  <h2 class="sec-title">PROPERTIES IN <span class="gold">MOTION</span></h2>
-  <div class="gallery-intro reveal">
-    <p>Every deal tells a story. We align strategy, timing, and execution—transforming opportunities into successful outcomes. At Warewolf Management, real estate isn’t just handled, it’s mastered.</p>
-    <div class="gallery-hint"><span class="gallery-hint-arrow"></span>Scroll to explore</div>
-  </div>
-  <div class="gallery-strip">
-    <div class="gcard reveal">
-      <video src="tour-1.mp4" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
-      <div class="gcard-meta">
-        <div class="gcard-tag">Villa Retreat</div>
-        <div class="gcard-title">Coastal Living</div>
+<!-- TESTIMONIALS (with photos) -->
+<section id="testimonials">
+  <div class="tag">Client Voices</div>
+  <h2 class="sec-title">TRUSTED BY <span class="gold">OUR CLIENTS</span></h2>
+  <div class="tgrid">
+    <div class="tcard reveal">
+      <div class="tphoto" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80')"></div>
+      <div class="tbody">
+        <div class="tstars">★★★★★</div>
+        <p class="tquote">"WareWolf's acquisition team found us an off-market multifamily in West Loop before it ever hit the MLS. Closed 8% under market. They do their homework."</p>
+        <div class="tmeta"><strong>Elena M.</strong><span>Investor · Chicago, IL</span></div>
       </div>
-      <button class="gcard-play" aria-label="Play with sound">▶</button>
     </div>
-    <div class="gcard reveal">
-      <video src="tour-2.mp4" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
-      <div class="gcard-meta">
-        <div class="gcard-tag">Aerial Tour</div>
-        <div class="gcard-title">Cinematic Walkthrough</div>
+    <div class="tcard reveal">
+      <div class="tphoto" style="background-image:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80')"></div>
+      <div class="tbody">
+        <div class="tstars">★★★★★</div>
+        <p class="tquote">"The listing video they made for my Bucktown condo was shared 3,000 times on social. We had six offers in nine days, closed 5% over ask."</p>
+        <div class="tmeta"><strong>Daniel R.</strong><span>Seller · Bucktown</span></div>
       </div>
-      <button class="gcard-play" aria-label="Play with sound">▶</button>
     </div>
-    <div class="gcard reveal">
-      <video src="tour-3.mp4" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
-      <div class="gcard-meta">
-        <div class="gcard-tag">Luxury Estate</div>
-        <div class="gcard-title">Estate Living</div>
+    <div class="tcard reveal">
+      <div class="tphoto" style="background-image:url('https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80')"></div>
+      <div class="tbody">
+        <div class="tstars">★★★★★</div>
+        <p class="tquote">"As a solo agent, their transaction coordination saved me easily 10 hours a week. I get to focus on clients; they handle every file and deadline."</p>
+        <div class="tmeta"><strong>Aisha N.</strong><span>Broker Partner · Chicago</span></div>
       </div>
-      <button class="gcard-play" aria-label="Play with sound">▶</button>
     </div>
-    <div class="gcard reveal">
-      <video src="tour-4.mp4" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
-      <div class="gcard-meta">
-        <div class="gcard-tag">Architecture</div>
-        <div class="gcard-title">Exterior Design</div>
+    <div class="tcard reveal">
+      <div class="tphoto" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80')"></div>
+      <div class="tbody">
+        <div class="tstars">★★★★★</div>
+        <p class="tquote">"They matched me with a 1031-exchange replacement property in under three weeks. Off-market, clean title, perfect fit. That network is real."</p>
+        <div class="tmeta"><strong>Marcus T.</strong><span>Investor · Lincoln Park</span></div>
       </div>
-      <button class="gcard-play" aria-label="Play with sound">▶</button>
     </div>
-    <div class="gcard reveal">
-      <video src="tour-5.mp4" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
-      <div class="gcard-meta">
-        <div class="gcard-tag">Community</div>
-        <div class="gcard-title">Modern Developments</div>
+    <div class="tcard reveal">
+      <div class="tphoto" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&q=80')"></div>
+      <div class="tbody">
+        <div class="tstars">★★★★★</div>
+        <p class="tquote">"Their property management reporting is the clearest I've seen. Every month I get a clean financial view and know exactly what's happening at my buildings."</p>
+        <div class="tmeta"><strong>Priya S.</strong><span>Owner · Logan Square</span></div>
       </div>
-      <button class="gcard-play" aria-label="Play with sound">▶</button>
-    </div>
-  </div>
-</section>
-
-<!-- NEIGHBORHOODS -->
-<section id="neighborhoods">
-  <div class="tag">Chicago &amp; Suburbs</div>
-  <h2 class="sec-title">EXPLORE <span class="gold">NEIGHBORHOODS</span></h2>
-  <div class="nbhd-grid">
-    <div class="ncard reveal">
-      <img class="ncard-img" src="https://www.dreamtown.com/assets/img/neighborhoods/lincoln-square-thumb.jpg" alt="Lincoln Square" onerror="this.src='https://images.unsplash.com/photo-1494526585095-c41746248156?w=400&q=80'"/>
-      <div class="ncard-overlay"><div><div class="ncard-tag">Neighborhood</div><div class="ncard-name">Lincoln Square</div></div></div>
-    </div>
-    <div class="ncard reveal">
-      <img class="ncard-img" src="https://www.dreamtown.com/assets/img/neighborhoods/humboldt-park-thumb.jpg" alt="Humboldt Park" onerror="this.src='https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=400&q=80'"/>
-      <div class="ncard-overlay"><div><div class="ncard-tag">Neighborhood</div><div class="ncard-name">Humboldt Park</div></div></div>
-    </div>
-    <div class="ncard reveal">
-      <img class="ncard-img" src="https://www.dreamtown.com/assets/img/suburbs/skokie-thumb.jpg" alt="Skokie" onerror="this.src='https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400&q=80'"/>
-      <div class="ncard-overlay"><div><div class="ncard-tag">Suburb</div><div class="ncard-name">Skokie</div></div></div>
-    </div>
-    <div class="ncard reveal">
-      <img class="ncard-img" src="https://www.dreamtown.com/assets/img/suburbs/evanston-thumb.jpg" alt="Evanston" onerror="this.src='https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=400&q=80'"/>
-      <div class="ncard-overlay"><div><div class="ncard-tag">Suburb</div><div class="ncard-name">Evanston</div></div></div>
     </div>
   </div>
 </section>
@@ -638,12 +613,12 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
   <div class="tag">What We Do</div>
   <h2 class="sec-title">OUR <span class="gold">SERVICES</span></h2>
   <div class="services-grid">
-    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80')"><div class="scard-num">01</div><div class="scard-name">PROPERTY AQUISITION SUPPORT</div><p class="scard-desc">We help clients identify, evaluate, and secure profitable real estate opportunities aligned with their investment goals.</p></div>
-    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&q=80')"><div class="scard-num">02</div><div class="scard-name">BUYER-SELLER COORDINATION</div><p class="scard-desc">Warewolf Management connects qualified buyers and sellers, ensuring smooth communication and efficient deal flow.</p></div>
-    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80')"><div class="scard-num">03</div><div class="scard-name">REAL ESTATE CONSULTING</div><p class="scard-desc">We provide strategic guidance on property investments, market trends, and portfolio growth to maximize returns.</p></div>
-    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80')"><div class="scard-num">04</div><div class="scard-name">AGENT &amp; BROKER SUPPORT SERVICES</div><p class="scard-desc">We collaborate with licensed agents and brokers by providing backend support, deal coordination, and client management assistance.</p></div>
-    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80')"><div class="scard-num">05</div><div class="scard-name">TRANSACTION COORDINATION</div><p class="scard-desc">From initial negotiations to closing, we assist in managing the entire transaction process to ensure everything runs seamlessly.</p></div>
-    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80')"><div class="scard-num">06</div><div class="scard-name">INVESTMENT PROPERTY SOURCING</div><p class="scard-desc">Our team sources high-potential residential and commercial properties tailored to investor needs and financial goals.</p></div>
+    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80')"><div class="scard-num">01</div><div class="scard-name">PROPERTY LEAD GENERATION</div><p class="scard-desc">WareWolf Management finds and qualifies potential buyers, sellers, and investors before they reach the open market — turning raw interest into real prospects.</p></div>
+    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80')"><div class="scard-num">02</div><div class="scard-name">LISTING MARKETING</div><p class="scard-desc">WareWolf Management handles the entire listing lift — photography, video tours, copy, MLS placement, social, and paid promotion — for the fastest path to a qualified offer.</p></div>
+    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80')"><div class="scard-num">03</div><div class="scard-name">ACQUISITION CONSULTING</div><p class="scard-desc">WareWolf Management delivers market analysis, ROI projections, and due diligence so buyers acquire the right properties at defensible prices — not just any property.</p></div>
+    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80')"><div class="scard-num">04</div><div class="scard-name">INVESTOR MATCHING</div><p class="scard-desc">WareWolf Management is the trusted connection between capital and opportunity — pairing off-market sellers with investors and equity partners with operators.</p></div>
+    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80')"><div class="scard-num">05</div><div class="scard-name">PROPERTY MANAGEMENT</div><p class="scard-desc">WareWolf Management handles tenant screening, lease administration, rent collection, maintenance, and reporting — managing every asset as if it were our own.</p></div>
+    <div class="scard reveal" style="background-image:url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80')"><div class="scard-num">06</div><div class="scard-name">REAL ESTATE MEDIA &amp; MARKETING</div><p class="scard-desc">WareWolf Management produces cinematic walkthroughs, drone footage, virtual staging, and branded content that turns scrolls into showings.</p></div>
   </div>
 </section>
 
@@ -653,21 +628,21 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
   <h2 class="sec-title">WHY <span class="gold">CHOOSE US</span></h2>
   <div class="why-grid">
     <div class="why-list">
-      <div class="witem reveal"><div class="wnum">01</div><div class="wbody"><h4>Strategic Execution</h4><p>We don’t just advise—we execute. Every deal is handled with precision from start to finish.</p></div></div>
-      <div class="witem reveal"><div class="wnum">02</div><div class="wbody"><h4>Seamless Coordination</h4><p>From buyers to sellers, agents to investors, we ensure smooth communication and efficient transactions.</p></div></div>
-      <div class="witem reveal"><div class="wnum">03</div><div class="wbody"><h4>Market Insight</h4><p>Our decisions are backed by real data, trends, and experience—giving you a competitive edge.</p></div></div>
-      <div class="witem reveal"><div class="wnum">04</div><div class="wbody"><h4>Reliable Partnerships</h4><p>We work closely with trusted professionals to deliver consistent and dependable results.</p></div></div>
-      <div class="witem reveal"><div class="wnum">05</div><div class="wbody"><h4>Client-Focused Approach</h4><p>Your goals drive everything we do. We tailor every strategy to maximize your success.</p></div></div>
+      <div class="witem reveal"><div class="wnum">01</div><div class="wbody"><h4>Full-Cycle Coverage</h4><p>From the first lead to the final listing reel, we handle every stage — so you never have to hire six different vendors to close one deal.</p></div></div>
+      <div class="witem reveal"><div class="wnum">02</div><div class="wbody"><h4>Data Before Decisions</h4><p>Every acquisition recommendation and listing price is backed by hard market data — not hunches, not vibes, not the last property down the block.</p></div></div>
+      <div class="witem reveal"><div class="wnum">03</div><div class="wbody"><h4>Media That Sells</h4><p>Cinematic walkthroughs, drone footage, and branded social content built to the same production standard as luxury listings — for every price point.</p></div></div>
+      <div class="witem reveal"><div class="wnum">04</div><div class="wbody"><h4>Investor-Grade Network</h4><p>A curated network of capital partners, 1031 buyers, and operators means off-market opportunities and faster matches than any public listing service.</p></div></div>
+      <div class="witem reveal"><div class="wnum">05</div><div class="wbody"><h4>One Point of Contact</h4><p>Representation, coordination, management, and media — one team, one accountable owner per deal, no handoffs between departments.</p></div></div>
     </div>
     <div class="why-right reveal">
-      <div class="why-quote">"Elevating your real estate experience with end-to-end management, from deep market insights and acquisition to flawless transaction delivery."<cite>— WareWolf Management</cite></div>
+      <div class="why-quote">"Six services. One team. Every stage of your real estate story — from the first lead to the final reel — owned by people who actually care about the outcome."<cite>— WareWolf Management</cite></div>
       <div class="badges">
         <span class="badge">Licensed &amp; Insured</span>
         <span class="badge">Chicago Based</span>
-        <span class="badge">24/7 Support</span>
-        <span class="badge">Market Insight</span>
-        <span class="badge">Reliable Partnerships</span>
-        <span class="badge">Client-Focused Approach</span>
+        <span class="badge">Lead Generation</span>
+        <span class="badge">Listing Marketing</span>
+        <span class="badge">Investor Matching</span>
+        <span class="badge">Media Production</span>
       </div>
     </div>
   </div>
@@ -681,26 +656,26 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
     <div class="vmcard reveal">
       <div class="vmcard-tag">Our Vision</div>
       <h3>THE FUTURE WE BUILD</h3>
-      <p>To become Chicago's most trusted and respected real estate management firm — recognized not only for our performance, but for the integrity, innovation, and impact we bring to every property, community, and client relationship we serve.</p>
-      <p style="margin-top:14px">We envision a Chicago where property ownership is accessible, profitable, and stress-free — powered by management that treats every building as if it were our own.</p>
+      <p>To become Chicago's most trusted full-cycle real estate partner — the firm that buyers, sellers, investors, and agents all call first, because we cover every stage of the deal under one roof.</p>
+      <p style="margin-top:14px">We envision a market where lead generation, listing marketing, acquisition consulting, investor matching, property management, and media production no longer live in six different places — they live with one team that owns the outcome end-to-end.</p>
       <div class="vm-vals">
-        <div class="vm-val">Long-term community investment</div>
+        <div class="vm-val">One partner, every stage</div>
         <div class="vm-val">Setting the industry standard</div>
-        <div class="vm-val">Empowering property owners</div>
-        <div class="vm-val">Elevating Chicago neighborhoods</div>
+        <div class="vm-val">Empowering agents &amp; clients</div>
+        <div class="vm-val">Raising Chicago's bar</div>
       </div>
     </div>
     <div class="vmcard reveal">
       <div class="vmcard-tag">Our Mission</div>
       <h3>HOW WE OPERATE</h3>
-      <p>To deliver exceptional real estate management services through relentless attention to detail, transparent communication, and a commitment to maximizing the value of every property entrusted to us.</p>
+      <p>To deliver lead generation, listing marketing, acquisition consulting, investor matching, property management, and real estate media through one coordinated team — so our clients never have to piece together vendors or chase accountability.</p>
       <p style="margin-top:14px">We fulfill our mission through a culture built on five core values:</p>
       <div class="vm-vals">
         <div class="vm-val">Integrity — We do what we say</div>
         <div class="vm-val">Excellence — We raise the standard</div>
         <div class="vm-val">Accountability — We own every outcome</div>
-        <div class="vm-val">Innovation — We adapt and improve</div>
-        <div class="vm-val">Community — We invest in people</div>
+        <div class="vm-val">Craft — We sweat the details</div>
+        <div class="vm-val">Partnership — We play the long game</div>
       </div>
     </div>
   </div>
@@ -938,100 +913,37 @@ footer{background:var(--black3);border-top:1px solid var(--border);padding:56px 
 
 
 
-<!-- SOCIAL MEDIA -->
-<section id="social" style="background:var(--black2);padding:80px 60px;overflow:hidden;">
-  <div class="tag">Follow Us</div>
-  <h2 class="sec-title" style="margin-bottom:48px">CONNECT ON <span class="gold">SOCIAL MEDIA</span></h2>
-  <div class="social-carousel-wrap" style="position:relative;">
-    <div class="social-track" id="socialTrack" style="display:flex;gap:20px;transition:transform .5s cubic-bezier(.25,.8,.25,1);">
-
-      <!-- Facebook -->
-      <div class="soc-card" onclick="window.open('https://facebook.com','_blank')">
-        <div class="soc-icon-wrap" style="background:#1877F2;">
-          <svg viewBox="0 0 24 24" fill="white" width="36" height="36"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </div>
-        <div class="soc-name">Facebook</div>
-        <div class="soc-handle">@WareWolfMgmt</div>
-        <div class="soc-follow">Follow</div>
+<!-- LOCATION / MAP -->
+<section id="location" style="background:var(--black2);padding:80px 60px;overflow:hidden;">
+  <div class="tag">Visit Us</div>
+  <h2 class="sec-title" style="margin-bottom:48px">FIND <span class="gold">OUR OFFICE</span></h2>
+  <div class="map-grid">
+    <div class="map-info reveal">
+      <div class="map-info-block">
+        <div class="map-lbl">Headquarters</div>
+        <div class="map-val">WareWolf Management</div>
       </div>
-
-      <!-- Instagram -->
-      <div class="soc-card" onclick="window.open('https://instagram.com','_blank')">
-        <div class="soc-icon-wrap" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">
-          <svg viewBox="0 0 24 24" fill="white" width="36" height="36"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </div>
-        <div class="soc-name">Instagram</div>
-        <div class="soc-handle">@WareWolfMgmt</div>
-        <div class="soc-follow">Follow</div>
+      <div class="map-info-block">
+        <div class="map-lbl">Address</div>
+        <div class="map-val">203 N LaSalle St<br/>Chicago, IL 60601</div>
       </div>
-
-      <!-- X / Twitter -->
-      <div class="soc-card" onclick="window.open('https://x.com','_blank')">
-        <div class="soc-icon-wrap" style="background:#000;">
-          <svg viewBox="0 0 24 24" fill="white" width="36" height="36"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.632L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </div>
-        <div class="soc-name">X / Twitter</div>
-        <div class="soc-handle">@WareWolfMgmt</div>
-        <div class="soc-follow">Follow</div>
+      <div class="map-info-block">
+        <div class="map-lbl">Hours</div>
+        <div class="map-val">Monday &ndash; Friday<br/>9:00 AM &ndash; 6:00 PM CST</div>
       </div>
-
-      <!-- LinkedIn -->
-      <div class="soc-card" onclick="window.open('https://linkedin.com','_blank')">
-        <div class="soc-icon-wrap" style="background:#0A66C2;">
-          <svg viewBox="0 0 24 24" fill="white" width="36" height="36"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </div>
-        <div class="soc-name">LinkedIn</div>
-        <div class="soc-handle">WareWolf Management</div>
-        <div class="soc-follow">Connect</div>
+      <div class="map-info-block">
+        <div class="map-lbl">Contact</div>
+        <div class="map-val">admin@warewolfmanagement.com</div>
       </div>
-
-      <!-- YouTube -->
-      <div class="soc-card" onclick="window.open('https://youtube.com','_blank')">
-        <div class="soc-icon-wrap" style="background:#FF0000;">
-          <svg viewBox="0 0 24 24" fill="white" width="36" height="36"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        </div>
-        <div class="soc-name">YouTube</div>
-        <div class="soc-handle">WareWolf Management</div>
-        <div class="soc-follow">Subscribe</div>
-      </div>
-
-      <!-- TikTok -->
-      <div class="soc-card" onclick="window.open('https://tiktok.com','_blank')">
-        <div class="soc-icon-wrap" style="background:#010101;">
-          <svg viewBox="0 0 24 24" fill="white" width="36" height="36"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-        </div>
-        <div class="soc-name">TikTok</div>
-        <div class="soc-handle">@WareWolfMgmt</div>
-        <div class="soc-follow">Follow</div>
-      </div>
-
-      <!-- WhatsApp -->
-      <div class="soc-card" onclick="window.open('https://wa.me/13125550000','_blank')">
-        <div class="soc-icon-wrap" style="background:#25D366;">
-          <svg viewBox="0 0 24 24" fill="white" width="36" height="36"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </div>
-        <div class="soc-name">WhatsApp</div>
-        <div class="soc-handle">Message Us</div>
-        <div class="soc-follow">Chat</div>
-      </div>
-
-      <!-- Google -->
-      <div class="soc-card" onclick="window.open('https://google.com','_blank')">
-        <div class="soc-icon-wrap" style="background:#fff;">
-          <svg viewBox="0 0 24 24" width="36" height="36"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-        </div>
-        <div class="soc-name">Google</div>
-        <div class="soc-handle">Leave a Review</div>
-        <div class="soc-follow">Review</div>
-      </div>
-
+      <a class="btn-gold" href="https://www.google.com/maps/search/?api=1&query=203+N+LaSalle+St+Chicago+IL+60601" target="_blank" rel="noopener" style="align-self:flex-start;margin-top:8px">Get Directions</a>
     </div>
-  </div>
-  <!-- carousel nav -->
-  <div style="display:flex;justify-content:center;align-items:center;gap:16px;margin-top:36px;">
-    <button id="socPrev" style="width:44px;height:44px;border:1px solid rgba(215,144,5,0.4);background:transparent;color:var(--gold);font-size:18px;cursor:pointer;transition:all .25s;" onmouseover="this.style.background='var(--gold)';this.style.color='var(--black)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">&#8592;</button>
-    <div id="socDots" style="display:flex;gap:8px;"></div>
-    <button id="socNext" style="width:44px;height:44px;border:1px solid rgba(215,144,5,0.4);background:transparent;color:var(--gold);font-size:18px;cursor:pointer;transition:all .25s;" onmouseover="this.style.background='var(--gold)';this.style.color='var(--black)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">&#8594;</button>
+    <div class="map-frame reveal">
+      <iframe
+        src="https://www.google.com/maps?q=203+N+LaSalle+St,+Chicago,+IL+60601&output=embed"
+        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="WareWolf Management Office Location"></iframe>
+    </div>
   </div>
 </section>
 
@@ -1215,45 +1127,6 @@ if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').ma
     v.pause();
   });
 }
-
-/* SOCIAL CAROUSEL */
-(function(){
-  const track = document.getElementById('socialTrack');
-  const dotsWrap = document.getElementById('socDots');
-  const prevBtn = document.getElementById('socPrev');
-  const nextBtn = document.getElementById('socNext');
-  if(!track) return;
-  const cards = Array.from(track.children);
-  const total = cards.length;
-  let cur = 0;
-  function pv(){ return window.innerWidth<641?1:window.innerWidth<961?3:4; }
-  function maxI(){ return Math.max(0, total - pv()); }
-  function buildDots(){
-    dotsWrap.innerHTML='';
-    for(let i=0;i<=maxI();i++){
-      const d=document.createElement('div');
-      d.style.cssText=`width:${i===cur?28:10}px;height:3px;background:${i===cur?'var(--gold)':'rgba(215,144,5,0.25)'};cursor:pointer;transition:all .3s`;
-      d.addEventListener('click',()=>goTo(i));
-      dotsWrap.appendChild(d);
-    }
-  }
-  function goTo(idx){
-    cur=Math.max(0,Math.min(idx,maxI()));
-    const w=cards[0].getBoundingClientRect().width+20;
-    track.style.transform=`translateX(-${cur*w}px)`;
-    buildDots();
-  }
-  prevBtn&&prevBtn.addEventListener('click',()=>goTo(cur-1));
-  nextBtn&&nextBtn.addEventListener('click',()=>goTo(cur+1));
-  let t=setInterval(()=>goTo(cur>=maxI()?0:cur+1),4000);
-  track.addEventListener('mouseenter',()=>clearInterval(t));
-  track.addEventListener('mouseleave',()=>{t=setInterval(()=>goTo(cur>=maxI()?0:cur+1),4000)});
-  let ts=0;
-  track.addEventListener('touchstart',e=>{ts=e.touches[0].clientX},{passive:true});
-  track.addEventListener('touchend',e=>{const d=ts-e.changedTouches[0].clientX;if(Math.abs(d)>40)goTo(d>0?cur+1:cur-1)});
-  window.addEventListener('resize',()=>goTo(0));
-  buildDots();
-})();
 
 </script>
 </body>
